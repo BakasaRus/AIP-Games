@@ -21,7 +21,7 @@
                                     <span class="text-danger">(Распродажа)</span>
                                 {% endif %}
                             </p>
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <a href="{{ url_for('get_game', game_id=game_id) }}" class="btn btn-primary">Подробнее</a>
                         </div>
                     </div>
                 </div>
