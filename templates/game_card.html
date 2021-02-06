@@ -1,0 +1,15 @@
+<div class="card mb-3">
+    <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg"
+         class="card-img-top" alt="{{ game.name }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ game.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: 12.02.2021</h6>
+        <p class="card-text">
+            {{ game.price }} RUB
+            {% if game.sale %}
+                <span class="text-danger">(Распродажа)</span>
+            {% endif %}
+        </p>
+        <a href="{{ url_for('get_game', game_id=game_id) }}" class="btn btn-primary">Подробнее</a>
+    </div>
+</div>
