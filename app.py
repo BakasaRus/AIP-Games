@@ -9,14 +9,9 @@ def homepage():
     return render_template('index.html', title="Nintendon't", games=games)
 
 
-@app.route('/about')
-def about():
-    return 'About us'
-
-
 @app.route('/games/<int:game_id>')
 def get_game(game_id):
-    return f'Game #{game_id}'
+    return render_template('game.html', game=games[game_id])
 
 
 if __name__ == '__main__':
