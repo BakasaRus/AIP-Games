@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Главная</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <header>
@@ -34,54 +34,25 @@
 </header>
 <main class="container mt-5">
     <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+        {% for game_id, game in games.items() %}
         <div class="col">
             <div class="card mb-3">
                 <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg"
-                     class="card-img-top" alt="Super Mario 3D World + Bowser's Fury">
+                     class="card-img-top" alt="{{ game.name }}">
                 <div class="card-body">
-                    <h5 class="card-title">Super Mario 3D World + Bowser's Fury</h5>
+                    <h5 class="card-title">{{ loop.index }}. {{ game.name }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: 12.02.2021</h6>
-                    <p class="card-text">4499 RUB</p>
+                    <p class="card-text">
+                        {{ game.price }} RUB
+                        {% if game.sale %}
+                            <span class="text-danger">(Распродажа)</span>
+                        {% endif %}
+                    </p>
                     <a href="#" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card mb-3">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg"
-                     class="card-img-top" alt="Super Mario 3D World + Bowser's Fury">
-                <div class="card-body">
-                    <h5 class="card-title">Super Mario 3D World + Bowser's Fury</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: 12.02.2021</h6>
-                    <p class="card-text">4499 RUB</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card mb-3">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg"
-                     class="card-img-top" alt="Super Mario 3D World + Bowser's Fury">
-                <div class="card-body">
-                    <h5 class="card-title">Super Mario 3D World + Bowser's Fury</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: 12.02.2021</h6>
-                    <p class="card-text">4499 RUB</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card mb-3">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg"
-                     class="card-img-top" alt="Super Mario 3D World + Bowser's Fury">
-                <div class="card-body">
-                    <h5 class="card-title">Super Mario 3D World + Bowser's Fury</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: 12.02.2021</h6>
-                    <p class="card-text">4499 RUB</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
