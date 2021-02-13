@@ -21,3 +21,13 @@ games = {
         'sale': True
     },
 }
+
+
+def find_by_name(name: str):
+    result = {}
+
+    for index, game in games.items():
+        if name.lower() in game['name'].lower():
+            result[index] = game
+
+    return result

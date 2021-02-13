@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" href="{{ url_for('homepage') }}">Nintendon't</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Открыть меню">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url_for('homepage') }}">Главная</a>
@@ -17,6 +17,10 @@
                     <a class="nav-link" href="#">Добавить игру</a>
                 </li>
             </ul>
+            <form class="d-flex" action="{{ url_for('search') }}">
+                <input name="title" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn btn-primary" type="submit">Поиск</button>
+            </form>
         </div>
     </div>
 </nav>
