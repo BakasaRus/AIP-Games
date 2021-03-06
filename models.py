@@ -10,3 +10,24 @@ class User(db.Model):
     last_name = db.Column(db.String(32), nullable=False)
     first_name = db.Column(db.String(32), nullable=False)
     is_admin = db.Column(db.Boolean, server_default='0')
+
+
+class Game(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, nullable=False)
+    desc = db.Column(db.Text, nullable=False)
+    poster = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    release_date = db.Column(db.DateTime, nullable=False)
+    on_sale = db.Column(db.Boolean, nullable=False, server_default='0')
+
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rating = db.Column(db.Integer, db.CheckConstraint('rating BETWEEN 1 AND 5'), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    game_id = db.Column(db.Integer, db.ForeignKey('game.id'), nullable=False)
+
+    user = db.relationship('User', backref=db.backref('reviews', lazy=True))
+    game = db.relationship('Game', backref=db.backref('reviews', lazy=True))
