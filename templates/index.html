@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container mt-5">
         <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
-            {% for game_id, game in games.items() %}
+            {% for game in games %}
                 <div class="col">
                     {% include 'game_card.html' %}
                 </div>

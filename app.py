@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort
-from games import games, find_by_name
-from models import db, User
+from games import find_by_name
+from models import db, User, Game, Review
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -11,14 +11,14 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def homepage():
+    games = Game.query.all()
     return render_template('index.html', title="Nintendon't", games=games)
 
 
 @app.route('/games/<int:game_id>')
 def get_game(game_id):
-    if game_id not in games:
-        abort(404)
-    return render_template('game.html', game=games[game_id])
+    game = Game.query.filter_by(id=game_id).one()
+    return render_template('game.html', game=game)
 
 
 @app.route('/search')

@@ -1,26 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ game.name }}
+    {{ game.title }}
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid" id="cover" style="background-image: url('https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMario3DWorldAndBowsersFury_image1600w.jpg');">
+    <div class="container-fluid" id="cover" style="background-image: url('{{ game.poster }}');">
 
     </div>
     <div class="container my-5">
-        <h1 class="text-center">{{ game.name }}</h1>
+        <h1 class="text-center">{{ game.title }}</h1>
         <article>
             <p>
-                Вместе с Марио, Луиджи, Пич и Тоадом вам предстоит спасти Королевство фей в Super Mario 3D World +
-                Bowser’s
-                Fury для Nintendo Switch! Выручите фею-принцессу и ее подданных самостоятельно или в компании трех
-                друзей в
-                улучшенной версии Super Mario 3D World.
-            </p>
-            <p>
-                Кроме того, также в одиночку или вместе с друзьями помогите Боузеру-младшему расколдовать его папочку в
-                новом дополнительном приключении Bowser’s Fury.
+                {{ game.desc }}
             </p>
         </article>
         <h3 class="mb-3">Отзывы</h3>
