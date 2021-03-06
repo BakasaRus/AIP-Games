@@ -17,7 +17,7 @@ def homepage():
 
 @app.route('/games/<int:game_id>')
 def get_game(game_id):
-    game = Game.query.filter_by(id=game_id).one()
+    game = Game.query.filter_by(id=game_id).first_or_404()
     return render_template('game.html', game=game)
 
 
