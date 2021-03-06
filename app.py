@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, abort
-from games import find_by_name
-from models import db, User, Game, Review
+from flask import Flask, render_template, request
+from models import db, Game
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -24,7 +23,8 @@ def get_game(game_id):
 @app.route('/search')
 def search():
     name = request.args.get('title', '')
-    return render_template('index.html', title="Nintendon't", games=find_by_name(name))
+    games = Game.query.filter(Game.title.like(f'%{name}%')).all()
+    return render_template('index.html', title="Nintendon't", games=games)
 
 
 @app.errorhandler(404)
