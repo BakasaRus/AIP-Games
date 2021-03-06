@@ -16,21 +16,19 @@
             </p>
         </article>
         <h3 class="mb-3">Отзывы</h3>
+        {% for review in game.reviews %}
         <div class="row">
             <div class="col-auto">
-                <p class="h1 text-success">5</p>
+                <p class="h1 text-success">{{ review.rating }}</p>
             </div>
             <div class="col">
                 <p class="text-primary fw-bold">
-                    Петров Иван
+                    {{ review.user.last_name }} {{ review.user.first_name }}
                 </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis distinctio exercitationem
-                    impedit
-                    in, magnam magni molestias nostrum optio porro vero?
-                </p>
+                <p>{{ review.body }}</p>
             </div>
         </div>
+        {% endfor %}
     </div>
     <div class="container-fluid bg-info text-white">
         <div class="container p-3">
