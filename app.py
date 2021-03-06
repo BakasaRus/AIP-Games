@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, abort
 from games import games, find_by_name
+from models import db, User
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
+db.init_app(app)
 
 
 @app.route('/')
