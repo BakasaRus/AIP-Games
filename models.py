@@ -9,3 +9,4 @@ class User(db.Model):
     password = db.Column(db.String(32), nullable=False)
     last_name = db.Column(db.String(32), nullable=False)
     first_name = db.Column(db.String(32), nullable=False)
+    is_admin = db.Column(db.Boolean, server_default='0')
