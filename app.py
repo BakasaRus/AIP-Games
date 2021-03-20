@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = environ['APP_SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = environ['DATABASE_URL']
 db.init_app(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, compare_type=True)
 login_manager = LoginManager(app)
 
 
