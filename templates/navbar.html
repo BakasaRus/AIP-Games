@@ -16,7 +16,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('create_game') }}">Добавить игру</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Выйти</a>
+                </li>
             </ul>
+            {% if current_user.is_authenticated %}
+            <span class="navbar-text">
+                {{ current_user.first_name }} {{ current_user.last_name }}
+            </span>
+            {% endif %}
             <form class="d-flex" action="{{ url_for('search') }}">
                 <input name="title" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn btn-primary" type="submit">Поиск</button>

@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, abort, redirect, url_for
 from models import db, Game, User
 from flask_migrate import Migrate
 from forms import LoginForm, RegisterForm
-from flask_login import login_user, LoginManager
+from flask_login import login_user, logout_user, LoginManager
 
 app = Flask(__name__)
 app.secret_key = 'v{O#GgvaO@Rp'
@@ -46,6 +46,12 @@ def register():
         login_user(user, remember=True)
         return redirect(url_for('homepage'))
     return render_template('register.html', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('homepage'))
 
 
 @app.route('/games/new')
