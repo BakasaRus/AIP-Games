@@ -32,7 +32,8 @@
     </div>
     <div class="container-fluid bg-info text-white">
         <div class="container p-3">
-            <form>
+            <form action="{{ url_for('create_review', game_id=game.id) }}" method="POST">
+                {{ form.csrf_token }}
                 <h3 class="mb-3">Оценить игру</h3>
                 <div class="mb-3">
                     <p>Оценка</p>

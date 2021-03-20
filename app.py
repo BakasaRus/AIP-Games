@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, abort, redirect, url_for
-from models import db, Game, User
+from models import db, Game, User, Review
 from flask_migrate import Migrate
 from forms import LoginForm, RegisterForm, ReviewForm
-from flask_login import login_user, logout_user, LoginManager, login_required
+from flask_login import login_user, logout_user, LoginManager, login_required, current_user
 
 app = Flask(__name__)
 app.secret_key = 'v{O#GgvaO@Rp'
@@ -74,6 +74,22 @@ def get_game(game_id):
     game = Game.query.filter_by(id=game_id).first_or_404()
     review_form = ReviewForm()
     return render_template('game.html', game=game, form=review_form)
+
+
+@app.route('/games/<int:game_id>/reviews', methods=['POST'])
+def create_review(game_id):
+    review_form = ReviewForm()
+    print(type(review_form.rating.data))
+    print(review_form.body.data)
+    if review_form.validate():
+        rating = review_form.rating.data
+        body = review_form.body.data
+        user_id = current_user.id
+        review = Review(rating=rating, body=body, game_id=game_id, user_id=user_id)
+        db.session.add(review)
+        db.session.commit()
+        return redirect(url_for('get_game', game_id=game_id))
+    return redirect(url_for('get_game', game_id=game_id))
 
 
 @app.route('/search')

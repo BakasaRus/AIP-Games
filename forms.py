@@ -25,5 +25,5 @@ class ReviewForm(FlaskForm):
         (3, 'Нормально'),
         (2, 'Плохо'),
         (1, 'Ужасно'),
-    ])
-    body = StringField(label='Комментарий', widget=TextArea())
+    ], validators=[DataRequired()])
+    body = StringField(label='Комментарий', widget=TextArea(), validators=[DataRequired()])
