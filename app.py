@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, abort, redirect, url_for
 from models import db, Game, User
 from flask_migrate import Migrate
-from forms import LoginForm, RegisterForm
+from forms import LoginForm, RegisterForm, ReviewForm
 from flask_login import login_user, logout_user, LoginManager, login_required
 
 app = Flask(__name__)
@@ -72,7 +72,8 @@ def create_game():
 @app.route('/games/<int:game_id>')
 def get_game(game_id):
     game = Game.query.filter_by(id=game_id).first_or_404()
-    return render_template('game.html', game=game)
+    review_form = ReviewForm()
+    return render_template('game.html', game=game, form=review_form)
 
 
 @app.route('/search')
