@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from models import db, Game
 from flask_migrate import Migrate
-from forms import LoginForm
+from forms import LoginForm, RegisterForm
 
 app = Flask(__name__)
 app.secret_key = 'v{O#GgvaO@Rp'
@@ -20,6 +20,12 @@ def homepage():
 def login():
     form = LoginForm()
     return render_template('login.html', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    return render_template('register.html', form=form)
 
 
 @app.route('/games/new')

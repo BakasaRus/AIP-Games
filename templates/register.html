@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 offset-lg-3 offset-md-2">
+                <form action="{{ url_for('register') }}" method="POST">
+                    {{ form.csrf_token }}
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{{ form.email.label }}</label>
+                        {{ form.email(class_='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">{{ form.first_name.label }}</label>
+                        {{ form.first_name(class_='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">{{ form.last_name.label }}</label>
+                        {{ form.last_name(class_='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">{{ form.password.label }}</label>
+                        {{ form.password(class_='form-control') }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmation" class="form-label">{{ form.confirmation.label }}</label>
+                        {{ form.confirmation(class_='form-control') }}
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
