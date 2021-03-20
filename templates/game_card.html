@@ -3,9 +3,9 @@
          class="card-img-top" alt="{{ game.title }}">
     <div class="card-body">
         <h5 class="card-title">{{ game.title }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: {{ game.release_date }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Дата выпуска: {{ game.release_date | date_format }}</h6>
         <p class="card-text">
-            {{ game.price }} RUB
+            ₽{{ game.price }}
             {% if game.on_sale %}
                 <span class="text-danger">(Распродажа)</span>
             {% endif %}

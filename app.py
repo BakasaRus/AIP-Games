@@ -3,8 +3,10 @@ from models import db, Game, User, Review
 from flask_migrate import Migrate
 from forms import LoginForm, RegisterForm, ReviewForm, GameForm
 from flask_login import login_user, logout_user, LoginManager, login_required, current_user
+import locale
 from os import environ
 
+locale.setlocale(locale.LC_ALL, '')
 app = Flask(__name__)
 app.secret_key = environ['APP_SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = environ['DATABASE_URL']
@@ -114,6 +116,11 @@ def search():
 @app.errorhandler(404)
 def not_found(error):
     return render_template('errors/404.html'), 404
+
+
+@app.template_filter('date_format')
+def date_format(value, format='%x'):
+    return value.strftime(format)
 
 
 if __name__ == '__main__':
