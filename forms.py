@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, RadioField, IntegerField, DateField
 from wtforms.validators import Email, DataRequired, EqualTo, URL
-from wtforms.widgets import PasswordInput, TextArea
+from wtforms.widgets import PasswordInput, TextArea, TextInput
 
 
 class LoginForm(FlaskForm):
@@ -22,8 +22,8 @@ class GameForm(FlaskForm):
     title = StringField(label='Название', validators=[DataRequired()])
     desc = StringField(label='Описание', validators=[DataRequired()], widget=TextArea())
     poster = StringField(label='Обложка', validators=[DataRequired(), URL()], description='Используйте обложки с соотношением 2:1.')
-    price = IntegerField(label='Цена', validators=[DataRequired()])
-    release_date = DateField(label='Дата релиза', validators=[DataRequired()])
+    price = IntegerField(label='Цена', validators=[DataRequired()], widget=TextInput('number'))
+    release_date = DateField(label='Дата релиза', validators=[DataRequired()], widget=TextInput('date'))
     on_sale = BooleanField(label='Распродажа')
 
 
