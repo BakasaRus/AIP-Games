@@ -26,6 +26,15 @@ def homepage():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        remember_me = form.remember_me.data
+        user = User.query.filter_by(email=email).first()
+        if not user or not user.check_password(password):
+            abort(401)
+        login_user(user, remember=remember_me)
+        return redirect(url_for('homepage'))
     return render_template('login.html', form=form)
 
 
