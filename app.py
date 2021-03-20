@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, abort, redirect, url_for
 from models import db, Game, User, Review
 from flask_migrate import Migrate
-from forms import LoginForm, RegisterForm, ReviewForm
+from forms import LoginForm, RegisterForm, ReviewForm, GameForm
 from flask_login import login_user, logout_user, LoginManager, login_required, current_user
 from os import environ
 
@@ -64,10 +64,21 @@ def logout():
     return redirect(url_for('homepage'))
 
 
-@app.route('/games/new')
+@app.route('/games/new', methods=['GET', 'POST'])
 @login_required
 def create_game():
-    return render_template('new_game.html')
+    form = GameForm()
+    if form.validate_on_submit():
+        game = Game(title=form.title.data,
+                    desc=form.desc.data,
+                    poster=form.poster.data,
+                    release_date=form.release_date.data,
+                    price=form.price.data,
+                    on_sale=form.on_sale.data)
+        db.session.add(game)
+        db.session.commit()
+        return redirect(url_for('get_game', game_id=game.id))
+    return render_template('new_game.html', form=form)
 
 
 @app.route('/games/<int:game_id>')

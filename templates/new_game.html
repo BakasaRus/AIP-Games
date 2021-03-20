@@ -6,33 +6,35 @@
 
 {% block content %}
     <div class="container my-5">
-        <form action="{{ url_for('create_game') }}">
+        <h1 class="text-center">Добавление новой игры</h1>
+        <form action="{{ url_for('create_game') }}" method="POST">
+            {{ form.csrf_token }}
             <div class="mb-3">
-                <label for="title" class="form-label">Название</label>
-                <input type="text" class="form-control" id="title">
+                <label for="title" class="form-label">{{ form.title.label }}</label>
+                {{ form.title(class_='form-control') }}
             </div>
             <div class="mb-3">
-                <label for="desc" class="form-label">Описание</label>
-                <textarea class="form-control" id="desc" rows="3"></textarea>
+                <label for="title" class="form-label">{{ form.desc.label }}</label>
+                {{ form.desc(class_='form-control', rows=3) }}
             </div>
             <div class="mb-3">
-                <label for="poster" class="form-label">Обложка</label>
-                <input type="text" class="form-control" id="poster" aria-describedby="posterHelp">
-                <div id="posterHelp" class="form-text">Используйте обложки с соотношением 2:1.</div>
+                <label for="poster" class="form-label">{{ form.poster.label }}</label>
+                {{ form.poster(class_='form-control') }}
+                <div class="form-text">{{ form.poster.description }}</div>
             </div>
             <div class="row">
                 <div class="col-md mb-3">
-                    <label for="release_date" class="form-label">Дата выхода</label>
-                    <input type="date" class="form-control" id="release_date">
+                    <label for="release_date" class="form-label">{{ form.release_date.label }}</label>
+                    {{ form.release_date(class_='form-control') }}
                 </div>
                 <div class="col-md mb-3">
-                    <label for="price" class="form-label">Цена</label>
-                    <input type="number" class="form-control" id="price">
+                    <label for="price" class="form-label">{{ form.price.label }}</label>
+                    {{ form.price(class_='form-control') }}
                 </div>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="onSale">
-                <label class="form-check-label" for="onSale">На распродаже</label>
+                {{ form.on_sale(class_='form-check-input') }}
+                <label class="form-check-label" for="onSale">{{ form.on_sale.label }}</label>
             </div>
             <button type="submit" class="btn btn-primary">Добавить</button>
         </form>

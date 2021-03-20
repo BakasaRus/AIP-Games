@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, RadioField
-from wtforms.validators import Email, DataRequired, EqualTo
+from wtforms import StringField, BooleanField, RadioField, IntegerField, DateField
+from wtforms.validators import Email, DataRequired, EqualTo, URL
 from wtforms.widgets import PasswordInput, TextArea
 
 
@@ -16,6 +16,15 @@ class RegisterForm(FlaskForm):
     last_name = StringField(label='Фамилия', validators=[DataRequired()])
     password = StringField(label='Пароль', widget=PasswordInput(), validators=[DataRequired()])
     confirmation = StringField(label='Подтверждение пароля', widget=PasswordInput(), validators=[DataRequired(), EqualTo('password')])
+
+
+class GameForm(FlaskForm):
+    title = StringField(label='Название', validators=[DataRequired()])
+    desc = StringField(label='Описание', validators=[DataRequired()], widget=TextArea())
+    poster = StringField(label='Обложка', validators=[DataRequired(), URL()], description='Используйте обложки с соотношением 2:1.')
+    price = IntegerField(label='Цена', validators=[DataRequired()])
+    release_date = DateField(label='Дата релиза', validators=[DataRequired()])
+    on_sale = BooleanField(label='Распродажа')
 
 
 class ReviewForm(FlaskForm):
