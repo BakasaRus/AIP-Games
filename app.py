@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, abort, redirect, url_for
 from models import db, Game, User
 from flask_migrate import Migrate
 from forms import LoginForm, RegisterForm
-from flask_login import login_user, logout_user, LoginManager
+from flask_login import login_user, logout_user, LoginManager, login_required
 
 app = Flask(__name__)
 app.secret_key = 'v{O#GgvaO@Rp'
@@ -64,6 +64,7 @@ def logout():
 
 
 @app.route('/games/new')
+@login_required
 def create_game():
     return render_template('new_game.html')
 
