@@ -14,7 +14,7 @@
                     <a class="nav-link" href="#">Мои отзывы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Добавить игру</a>
+                    <a class="nav-link" href="{{ url_for('create_game') }}">Добавить игру</a>
                 </li>
             </ul>
             <form class="d-flex" action="{{ url_for('search') }}">

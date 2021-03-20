@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Новая игра
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <form action="{{ url_for('create_game') }}">
+            <div class="mb-3">
+                <label for="title" class="form-label">Название</label>
+                <input type="text" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Описание</label>
+                <textarea class="form-control" id="desc" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="poster" class="form-label">Обложка</label>
+                <input type="text" class="form-control" id="poster" aria-describedby="posterHelp">
+                <div id="posterHelp" class="form-text">Используйте обложки с соотношением 2:1.</div>
+            </div>
+            <div class="row">
+                <div class="col-md mb-3">
+                    <label for="release_date" class="form-label">Дата выхода</label>
+                    <input type="date" class="form-control" id="release_date">
+                </div>
+                <div class="col-md mb-3">
+                    <label for="price" class="form-label">Цена</label>
+                    <input type="number" class="form-control" id="price">
+                </div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="onSale">
+                <label class="form-check-label" for="onSale">На распродаже</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
+{% endblock %}

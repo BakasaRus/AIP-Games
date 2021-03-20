@@ -14,6 +14,11 @@ def homepage():
     return render_template('index.html', title="Nintendon't", games=games)
 
 
+@app.route('/games/new')
+def create_game():
+    return render_template('new_game.html')
+
+
 @app.route('/games/<int:game_id>')
 def get_game(game_id):
     game = Game.query.filter_by(id=game_id).first_or_404()
