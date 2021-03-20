@@ -1,8 +1,5 @@
 #cover {
     background-size: cover;
     background-position: center;
-    width: 100vw;
-    height: 500px;
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
+    height: calc(100vh - 56px);
 }
