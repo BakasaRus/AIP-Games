@@ -3,10 +3,11 @@ from models import db, Game, User, Review
 from flask_migrate import Migrate
 from forms import LoginForm, RegisterForm, ReviewForm
 from flask_login import login_user, logout_user, LoginManager, login_required, current_user
+from os import environ
 
 app = Flask(__name__)
-app.secret_key = 'v{O#GgvaO@Rp'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
+app.secret_key = environ['APP_SECRET_KEY']
+app.config['SQLALCHEMY_DATABASE_URI'] = environ['DATABASE_URL']
 db.init_app(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
